@@ -144,8 +144,11 @@ class ActivitiesScreen extends StatelessWidget {
     nameController.dispose();
 
     if (result != null) {
-      await repository.upsertActivity(result);
-      onChanged();
+  await repository.upsertActivity(result);
+
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    onChanged();
+  });
     }
   }
 
